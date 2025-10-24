@@ -1,0 +1,67 @@
+{
+  "name": "@nardole/vite-plugin-mockoon",
+  "version": "1.0.1",
+  "description": "Run Mockoon with your Vite dev server using a tiny plugin.",
+  "keywords": [
+    "mockoon",
+    "vite",
+    "vite-plugin",
+    "api",
+    "mock",
+    "mock-server"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.cjs"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "tsc && eslint src --ext .js,.ts",
+    "lint:fix": "yarn run format && yarn run lint --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,json,md}\"",
+    "test": "vitest",
+    "test:ci": "vitest --run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nardole-labs/vite-plugin-mockoon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nardole-labs/vite-plugin-mockoon/issues"
+  },
+  "homepage": "https://github.com/nardole-labs/vite-plugin-mockoon#readme",
+  "author": "Nardole Labs <opensource@nardole.dev>",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@mockoon/cli": "^9.3.0",
+    "@types/node": "^24.4.0",
+    "prettier": "^3.6.2",
+    "standard-version": "^9.5.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.5.3",
+    "vite": "^7.1.5",
+    "vitest": "^2.1.4"
+  },
+  "peerDependencies": {
+    "vite": "^6.1.0 || ^7.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  }
+}
