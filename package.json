@@ -1,6 +1,6 @@
 {
   "name": "@nardole/vite-plugin-mockoon",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Run Mockoon with your Vite dev server using a tiny plugin.",
   "keywords": [
     "mockoon",
@@ -36,12 +36,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nardole-labs/vite-plugin-mockoon.git"
+    "url": "git+https://github.com/btmluiz/vite-plugin-mockoon.git"
   },
   "bugs": {
-    "url": "https://github.com/nardole-labs/vite-plugin-mockoon/issues"
+    "url": "https://github.com/btmluiz/vite-plugin-mockoon/issues"
   },
-  "homepage": "https://github.com/nardole-labs/vite-plugin-mockoon#readme",
+  "homepage": "https://github.com/btmluiz/vite-plugin-mockoon#readme",
   "author": "Nardole Labs <opensource@nardole.dev>",
   "engines": {
     "node": ">=18.0.0"
