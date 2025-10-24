@@ -1,4 +1,52 @@
-name: pr-comment.yml
+name: PR Comment
+
 on:
+  pull_request_target:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - unlocked
 
 jobs:
+  pr-comment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: write-all
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: mshick/add-pr-comment@v2
+        with:
+          repo-token: ${{ secrets.PERSONAL_TOKEN }}
+          message-id: 'add-pr-comment'
+          message: |
+            Thanks for opening this pull request and contributing to the project
+            
+            The next step is for the maintainers to review your changes. If everything looks good, it will be approved and merged into the main branch.
+            
+            In the meantime, anyone in the community is encouraged to test this pull request and provide feedback.
+            
+            ### ✅ How to confirm it works
+            
+            If you've tested this PR, please comment bellow with:
+            
+            ```
+            Tested and working ✅
+            ```
+            
+            This helps us speed up the review and merge process.
+            
+            ### 📦 To test this PR locally:
+            
+            ```
+            npm install @nardole/vite-plugin-mockoon@${{ github.event.pull_request.head.repo.full_name }}#${{ github.event.pull_request.head.ref }}
+
+            # Yarn (v2+)
+            yarn add @nardole/vite-plugin-mockoon@${{ github.event.pull_request.head.repo.full_name }}#${{ github.event.pull_request.head.ref }}
+
+            # PNPM
+            pnpm add @nardole/vite-plugin-mockoon@${{ github.event.pull_request.head.repo.full_name }}#${{ github.event.pull_request.head.ref }}
+            ```
+            
+            If you encounter any issues or have feedback, feel free to comment as well.

@@ -1,4 +1,39 @@
-name: manual-release.yml
+name: Manual Release
+
 on:
+  workflow_dispatch:
+    inputs:
+      increment:
+        type: string
+        description: 'Must be: patch, minor, major, pre* or <version>'
+        required: true
+        default: 'patch'
 
 jobs:
+  manual-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PERSONAL_TOKEN }}
+
+      - name: Enable Corepack and Set Yarn Version
+        run: |
+          corepack enable
+          corepack prepare yarn@1.22.x --activate
+
+      - name: Restore Yarn Cache
+        uses: actions/cache@v4
+        id: yarn-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install deps
+        run: yarn --immutable
+
+      - name: Release
+        run: npx release-it --increment ${{ github.event.inputs.increment }}
